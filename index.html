@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Prem Ghosh! 🎂🎉</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;600;700;800&family=Yatra+One&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Canvas for Fireworks & Particles -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Floating Balloons Container -->
+    <div id="balloon-container"></div>
+
+    <!-- Music / Sound Controls Floating Bar -->
+    <div class="sound-floating-bar">
+        <button id="musicToggleBtn" class="pill-btn" title="Toggle Birthday Melody">
+            <span class="icon">🎵</span> <span class="btn-text">Play Birthday Music</span>
+        </button>
+        <button id="confettiShowerBtn" class="pill-btn primary-glow" title="Shower Confetti">
+            <span class="icon">🎊</span> <span class="btn-text">Shower Confetti</span>
+        </button>
+    </div>
+
+    <main class="page-container">
+        <!-- HERO SECTION -->
+        <header class="hero-section">
+            <div class="badge-wrapper">
+                <span class="sparkle-badge">✨ 23rd November • A Star Was Born ✨</span>
+            </div>
+
+            <div class="title-container">
+                <h2 class="sub-greeting">Wishing a very</h2>
+                <h1 class="main-title">
+                    <span class="magic-text">Happy Birthday</span>
+                    <span class="name-highlight">Prem Ghosh!</span>
+                </h1>
+                <p class="tagline">
+                    May your life be filled with boundless joy, great health, unmatched success, and sweet memories!
+                    🌟🎂
+                </p>
+            </div>
+
+            <!-- Quick Action Pills -->
+            <div class="hero-actions">
+                <button class="action-btn" onclick="scrollToSection('video-section')">
+                    🎬 Watch Birthday Video
+                </button>
+                <button class="action-btn secondary" onclick="scrollToSection('gallery-section')">
+                    📸 Photo Memories
+                </button>
+                <button class="action-btn secondary" onclick="scrollToSection('cake-section')">
+                    🎂 Cut The Cake
+                </button>
+                <button class="action-btn secondary" onclick="scrollToSection('wishes-section')">
+                    💌 Read Wishes
+                </button>
+            </div>
+        </header>
+
+        <!-- CAKE & CANDLE INTERACTIVE SECTION -->
+        <section id="cake-section" class="interactive-card cake-section">
+            <div class="section-badge">Interactive Celebration</div>
+            <h2 class="section-title">Blow the Candles & Make a Wish! 🕯️</h2>
+            <p class="section-desc">Click the cake or the button below to blow out the candles!</p>
+
+            <div class="cake-stage" id="cakeStage" onclick="blowCandles()">
+                <div class="cake-box">
+                    <!-- Candle Flames -->
+                    <div class="candles-wrapper">
+                        <div class="candle">
+                            <div class="flame" id="flame1"></div>
+                            <div class="candle-stick"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame" id="flame2"></div>
+                            <div class="candle-stick"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame" id="flame3"></div>
+                            <div class="candle-stick"></div>
+                        </div>
+                    </div>
+                    <!-- Cake Body Layers -->
+                    <div class="cake-top">
+                        <div class="frosting"></div>
+                    </div>
+                    <div class="cake-middle"></div>
+                    <div class="cake-bottom"></div>
+                    <div class="cake-plate"></div>
+                </div>
+            </div>
+
+            <div class="cake-status-box">
+                <div id="candleStatusText" class="candle-status">Candles are glowing bright! ✨</div>
+                <button id="blowCandleBtn" class="magic-btn" onclick="blowCandles()">
+                    💨 Blow Out The Candles!
+                </button>
+            </div>
+        </section>
+
+        <!-- VIDEO SECTION -->
+        <section id="video-section" class="interactive-card video-showcase-section">
+            <div class="section-badge video-badge">🎬 Special Video Premiere</div>
+            <h2 class="section-title">Prem's Birthday Special Video 🌟</h2>
+            <p class="section-desc">Cherishing precious memories and celebrating the wonderful person you are!</p>
+
+            <div class="video-player-wrapper">
+                <div class="video-frame-glow"></div>
+                <div class="video-container">
+                    <video id="birthdayVideo" controls playsinline preload="metadata" poster="">
+                        <source src="video.mp4" type="video/mp4">
+                        <source src="lv_0_20261123015549%20(1)%20(1).mp4" type="video/mp4">
+                        Aapka browser HTML5 video support nahi karta.
+                    </video>
+
+                    <!-- Overlay Play Prompt (Shown until user plays) -->
+                    <div id="videoOverlay" class="video-overlay" onclick="startVideoPlayback()">
+                        <div class="play-pulse-circle">
+                            <svg viewBox="0 0 24 24" class="play-svg-icon">
+                                <path fill="currentColor" d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                        <h3>Click to Play Video with Sound 🔊</h3>
+                        <p>Special video for Prem Ghosh</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Controls Bar / Options -->
+            <div class="video-actions-bar">
+                <button class="video-btn" onclick="toggleVideoPlay()">
+                    <span id="playPauseIcon">⏯️</span> <span id="playPauseText">Play Video</span>
+                </button>
+                <button class="video-btn" onclick="toggleVideoMute()">
+                    <span id="muteIcon">🔊</span> Unmute / Mute
+                </button>
+                <button class="video-btn" onclick="restartVideo()">
+                    <span>🔄</span> Replay
+                </button>
+
+                <!-- Custom Video Uploader / Switcher -->
+                <label for="customVideoInput" class="video-btn file-switch-btn"
+                    title="Choose another video file from your computer">
+                    <span>📂</span> Choose Another Video
+                    <input type="file" id="customVideoInput" accept="video/*" style="display: none;">
+                </label>
+            </div>
+            <p class="video-hint">💡 Tip: You can switch to full-screen mode or upload another video anytime using the
+                button above.</p>
+        </section>
+
+        <!-- PHOTO MEMORIES GALLERY SECTION -->
+        <section id="gallery-section" class="interactive-card gallery-section">
+            <div class="section-badge gallery-badge">📸 Golden Memories</div>
+            <h2 class="section-title">Memorable Moments of Prem Ghosh ✨</h2>
+            <p class="section-desc">Cherishing precious smiles and timeless memories! Click any photo to see it in full view.</p>
+
+            <div class="photo-gallery-grid">
+                <div class="photo-card" onclick="openLightbox(0)">
+                    <div class="photo-img-wrapper">
+                        <img src="photo1.jpeg" alt="Prem Ghosh Memory" loading="lazy">
+                        <span class="photo-tag">🌟 Handsome Smile</span>
+                    </div>
+                    <div class="photo-footer">
+                        <span>Cherished Moments</span>
+                        <span class="heart-icon">💖</span>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(1)">
+                    <div class="photo-img-wrapper">
+                        <img src="photo2.jpeg" alt="Prem Ghosh Memory" loading="lazy">
+                        <span class="photo-tag">🔥 Rockstar Vibes</span>
+                    </div>
+                    <div class="photo-footer">
+                        <span>Golden Times</span>
+                        <span class="heart-icon">❤️</span>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(2)">
+                    <div class="photo-img-wrapper">
+                        <img src="photo3.jpeg" alt="Prem Ghosh Memory" loading="lazy">
+                        <span class="photo-tag">👑 King Style</span>
+                    </div>
+                    <div class="photo-footer">
+                        <span>Pure Happiness</span>
+                        <span class="heart-icon">✨</span>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(3)">
+                    <div class="photo-img-wrapper">
+                        <img src="photo4.jpeg" alt="Prem Ghosh Memory" loading="lazy">
+                        <span class="photo-tag">🎉 Sweet Smile</span>
+                    </div>
+                    <div class="photo-footer">
+                        <span>Always Smiling</span>
+                        <span class="heart-icon">🥰</span>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(4)">
+                    <div class="photo-img-wrapper">
+                        <img src="photo5.jpeg" alt="Prem Ghosh Memory" loading="lazy">
+                        <span class="photo-tag">💫 Best Times</span>
+                    </div>
+                    <div class="photo-footer">
+                        <span>Unstoppable</span>
+                        <span class="heart-icon">🔥</span>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(5)">
+                    <div class="photo-img-wrapper">
+                        <img src="photo6.jpeg" alt="Prem Ghosh Memory" loading="lazy">
+                        <span class="photo-tag">🌈 Good Vibes Only</span>
+                    </div>
+                    <div class="photo-footer">
+                        <span>Forever Young</span>
+                        <span class="heart-icon">💫</span>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(6)">
+                    <div class="photo-img-wrapper">
+                        <img src="photo7.jpeg" alt="Prem Ghosh Memory" loading="lazy">
+                        <span class="photo-tag">🥳 Celebration Mood</span>
+                    </div>
+                    <div class="photo-footer">
+                        <span>Making Memories</span>
+                        <span class="heart-icon">🎉</span>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(7)">
+                    <div class="photo-img-wrapper">
+                        <img src="photo8.jpeg" alt="Prem Ghosh Memory" loading="lazy">
+                        <span class="photo-tag">📸 Candid Shot</span>
+                    </div>
+                    <div class="photo-footer">
+                        <span>Special Day</span>
+                        <span class="heart-icon">❤️</span>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(8)">
+                    <div class="photo-img-wrapper">
+                        <img src="photo9.jpeg" alt="Prem Ghosh Memory" loading="lazy">
+                        <span class="photo-tag">💎 Rare Gem</span>
+                    </div>
+                    <div class="photo-footer">
+                        <span>True Charm</span>
+                        <span class="heart-icon">👑</span>
+                    </div>
+                </div>
+                <div class="photo-card" onclick="openLightbox(9)">
+                    <div class="photo-img-wrapper">
+                        <img src="photo10.jpeg" alt="Prem Ghosh Memory" loading="lazy">
+                        <span class="photo-tag">🏆 Life of the Party</span>
+                    </div>
+                    <div class="photo-footer">
+                        <span>Prem Ghosh</span>
+                        <span class="heart-icon">🌟</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPECIAL WISHES & MESSAGE SECTION -->
+        <section id="wishes-section" class="interactive-card wishes-card">
+            <div class="section-badge">Heartfelt Greetings</div>
+            <h2 class="section-title">A Heartfelt Wish for Prem Ghosh 💖</h2>
+
+            <div class="quote-container">
+                <div class="quote-mark">“</div>
+                <p class="quote-text">
+                    "जन्मदिन की ढेर सारी शुभकामनाएं प्रेम भाई! आपका जीवन हमेशा खुशियों, कामयाबी, अच्छी सेहत और नए-नए
+                    मुकामों से महकता रहे। आप जैसे हो हमेशा वैसे ही मुस्कुराते रहो!"
+                </p>
+                <div class="quote-author">— Best Wishes from Family & Friends</div>
+            </div>
+
+            <div class="wishes-grid">
+                <div class="wish-item">
+                    <div class="wish-emoji">🚀</div>
+                    <h3>Success & Growth</h3>
+                    <p>May every ambition, project, and dream of yours turn into grand success this year.</p>
+                </div>
+                <div class="wish-item">
+                    <div class="wish-emoji">✨</div>
+                    <h3>Health & Joy</h3>
+                    <p>Wishing you endless energy, good health, and infectious smiles every single day.</p>
+                </div>
+                <div class="wish-item">
+                    <div class="wish-emoji">🎉</div>
+                    <h3>Unforgettable Memories</h3>
+                    <p>May this year bring incredible adventures, genuine friendships, and beautiful surprises.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE GUESTBOOK / WISH WALL -->
+        <section class="interactive-card wishwall-card">
+            <div class="section-badge">Interactive Wish Wall</div>
+            <h2 class="section-title">Leave a Birthday Wish for Prem ✍️</h2>
+            <p class="section-desc">Type your name and your special message to pin it to Prem's birthday board!</p>
+
+            <form id="wishForm" class="wish-form" onsubmit="handleWishSubmit(event)">
+                <div class="form-row">
+                    <input type="text" id="wishSender" placeholder="Your Name (Aapka Naam)..." required maxlength="50">
+                    <select id="wishEmojiSelect">
+                        <option value="❤️">❤️ Love</option>
+                        <option value="🎉">🎉 Party</option>
+                        <option value="👑">👑 King</option>
+                        <option value="🔥">🔥 Rockstar</option>
+                        <option value="🌟">🌟 Superstar</option>
+                        <option value="🎂">🎂 Cake</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <textarea id="wishMessage" rows="3" placeholder="Write your birthday message for Prem Ghosh..."
+                        required maxlength="300"></textarea>
+                </div>
+                <button type="submit" class="submit-wish-btn">
+                    💌 Post Wish on Wall
+                </button>
+            </form>
+
+            <div class="wishes-wall-grid" id="wishesWallGrid">
+                <!-- Dynamically populated or loaded from localStorage -->
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="celebration-footer">
+            <p>Made with ❤️ & Joy for <strong>Prem Ghosh</strong>'s Birthday Celebration</p>
+            <div class="footer-balloons">🎈 🎂 🎁 🎊 🥳</div>
+        </footer>
+    </main>
+
+    <!-- Lightbox Modal for Full Image View -->
+    <div id="imageLightbox" class="lightbox-modal" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+        <button class="lightbox-nav prev" onclick="navigateLightbox(-1, event)">&#10094;</button>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="Full view memory">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+        <button class="lightbox-nav next" onclick="navigateLightbox(1, event)">&#10095;</button>
+    </div>
+
+    <!-- Confetti Sound & Celebration Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+# Duplicate raw video and unaliased duplicate images
+lv_0_20261123015549*.mp4
+IMG-*.jpeg
+IMG2*.jpeg
+WhatsApp Image*.jpeg
+.gemini/
