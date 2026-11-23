@@ -25,6 +25,9 @@
 
     <!-- Music / Sound Controls Floating Bar -->
     <div class="sound-floating-bar">
+        <button id="qrModalToggleBtn" class="pill-btn qr-pill" onclick="openQrModal()" title="View QR Code">
+            <span class="icon">📱</span> <span class="btn-text">QR Code</span>
+        </button>
         <button id="musicToggleBtn" class="pill-btn" title="Toggle Birthday Melody">
             <span class="icon">🎵</span> <span class="btn-text">Play Birthday Music</span>
         </button>
@@ -65,6 +68,9 @@
                 </button>
                 <button class="action-btn secondary" onclick="scrollToSection('wishes-section')">
                     💌 Read Wishes
+                </button>
+                <button class="action-btn secondary qr-hero-btn" onclick="openQrModal()">
+                    📱 Get QR Code
                 </button>
             </div>
         </header>
@@ -352,6 +358,33 @@
             <div id="lightboxCaption" class="lightbox-caption"></div>
         </div>
         <button class="lightbox-nav next" onclick="navigateLightbox(1, event)">&#10095;</button>
+    </div>
+
+    <!-- QR Code Share Modal -->
+    <div id="qrModal" class="qr-modal" onclick="closeQrModal(event)">
+        <div class="qr-modal-card" onclick="event.stopPropagation()">
+            <span class="qr-close-btn" onclick="closeQrModal()">&times;</span>
+            <div class="qr-header">
+                <span class="qr-icon">📱</span>
+                <h3>Scan to Open Birthday Page</h3>
+                <p>Scan this QR code with any smartphone camera to open Prem Ghosh's Birthday Webpage!</p>
+            </div>
+            
+            <div class="qr-image-wrapper">
+                <img id="qrCodeImage" src="qrcode.png" alt="Vercel QR Code">
+            </div>
+
+            <div class="qr-link-box">
+                <input type="text" id="qrLinkInput" value="https://birthdaypagee.vercel.app" oninput="updateQrCode()" placeholder="Paste your Vercel link here...">
+                <button class="qr-copy-btn" onclick="copyQrLink()">📋 Copy</button>
+            </div>
+
+            <div class="qr-modal-actions">
+                <a id="downloadQrBtn" href="qrcode.png" download="Prem-Ghosh-Birthday-QR.png" class="qr-download-btn">
+                    ⬇️ Download QR Code Image
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Confetti Sound & Celebration Logic -->

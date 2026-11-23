@@ -619,14 +619,57 @@ function navigateLightbox(dir, event) {
     updateLightboxContent();
 }
 
-// Keyboard shortcuts for Lightbox
+// Keyboard shortcuts for Lightbox & QR Modal
 window.addEventListener('keydown', (e) => {
-    if (!lightboxModal || !lightboxModal.classList.contains('active')) return;
     if (e.key === 'Escape') {
-        closeLightbox();
-    } else if (e.key === 'ArrowLeft') {
-        navigateLightbox(-1);
-    } else if (e.key === 'ArrowRight') {
-        navigateLightbox(1);
+        if (qrModal && qrModal.classList.contains('active')) closeQrModal();
+        if (lightboxModal && lightboxModal.classList.contains('active')) closeLightbox();
+    } else if (lightboxModal && lightboxModal.classList.contains('active')) {
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
     }
 });
+
+// --- 9. QR Code Modal & Generator Handlers ---
+const qrModal = document.getElementById('qrModal');
+const qrCodeImage = document.getElementById('qrCodeImage');
+const qrLinkInput = document.getElementById('qrLinkInput');
+const downloadQrBtn = document.getElementById('downloadQrBtn');
+
+function openQrModal() {
+    if (qrModal) {
+        qrModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeQrModal(event) {
+    if (event && event.target && event.target.closest('.qr-modal-card') && !event.target.classList.contains('qr-close-btn')) {
+        return;
+    }
+    if (qrModal) {
+        qrModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function updateQrCode() {
+    if (!qrLinkInput || !qrCodeImage) return;
+    const link = qrLinkInput.value.trim() || 'https://birthdaypagee.vercel.app';
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(link)}&margin=15`;
+    qrCodeImage.src = qrUrl;
+    if (downloadQrBtn) {
+        downloadQrBtn.href = qrUrl;
+    }
+}
+
+function copyQrLink() {
+    if (!qrLinkInput) return;
+    navigator.clipboard.writeText(qrLinkInput.value).then(() => {
+        alert('✅ Link copied to clipboard: ' + qrLinkInput.value);
+    }).catch(() => {
+        qrLinkInput.select();
+        document.execCommand('copy');
+        alert('✅ Link copied: ' + qrLinkInput.value);
+    });
+}

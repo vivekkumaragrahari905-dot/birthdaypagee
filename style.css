@@ -1044,6 +1044,161 @@ body {
     right: 25px;
 }
 
+/* QR CODE SHARE MODAL */
+.qr-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 5, 20, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 1050;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.qr-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.qr-modal-card {
+    background: linear-gradient(145deg, rgba(32, 23, 62, 0.95), rgba(18, 13, 38, 0.98));
+    border: 1px solid rgba(236, 72, 153, 0.35);
+    border-radius: 28px;
+    padding: 35px 30px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 40px rgba(139, 92, 246, 0.25);
+    animation: zoomModal 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes zoomModal {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.qr-close-btn {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    color: #cbd5e1;
+    font-size: 2.2rem;
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.qr-close-btn:hover {
+    color: #ec4899;
+}
+
+.qr-header .qr-icon {
+    font-size: 2.4rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.qr-header h3 {
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.qr-header p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.qr-image-wrapper {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 25px rgba(255, 255, 255, 0.2);
+    margin-bottom: 20px;
+}
+
+#qrCodeImage {
+    width: 200px;
+    height: 200px;
+    display: block;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.qr-link-box {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.qr-link-box input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: #fde047;
+    font-family: inherit;
+    font-size: 0.88rem;
+    padding: 10px 14px;
+    outline: none;
+    font-weight: 600;
+}
+
+.qr-copy-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.qr-copy-btn:hover {
+    background: #8b5cf6;
+    border-color: #8b5cf6;
+}
+
+.qr-download-btn {
+    display: block;
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
+    transition: all 0.25s;
+}
+
+.qr-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(236, 72, 153, 0.6);
+}
+
+.qr-pill {
+    background: rgba(56, 189, 248, 0.2) !important;
+    border-color: rgba(56, 189, 248, 0.4) !important;
+}
+
+.qr-pill:hover {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.6) !important;
+}
+
 /* FOOTER */
 .celebration-footer {
     text-align: center;
