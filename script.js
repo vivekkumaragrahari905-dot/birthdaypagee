@@ -465,28 +465,30 @@ function scrollToSection(sectionId) {
 // --- 7. Interactive Wish Wall (localStorage) ---
 const defaultWishes = [
     {
-        sender: "Rahul Sharma",
+        sender: "Vivek Agrahari",
         emoji: "🔥",
         message: "Happy Birthday Prem! May this year take your career and happiness to new heights! Party hard bro! 🍻",
         time: "Just now"
     },
     {
-        sender: "Ananya & Group",
+        sender: "Nitin Gupta",
         emoji: "👑",
         message: "Wishing the coolest person Prem Ghosh a fabulous birthday! Keep shining and spreading smiles always! 🌟",
         time: "1 hour ago"
     },
     {
-        sender: "Vikas & Family",
+        sender: "Palak Patel",
         emoji: "❤️",
         message: "जन्मदिन मुबारक प्रेम भाई! भगवान आपको हमेशा स्वस्थ और खुश रखे। बहुत सारा प्यार!",
         time: "Today"
     }
 ];
 
+const WISHES_STORAGE_KEY = 'prem_birthday_wishes_v2';
+
 function getStoredWishes() {
     try {
-        const saved = localStorage.getItem('prem_birthday_wishes');
+        const saved = localStorage.getItem(WISHES_STORAGE_KEY);
         return saved ? JSON.parse(saved) : defaultWishes;
     } catch (e) {
         return defaultWishes;
@@ -495,7 +497,7 @@ function getStoredWishes() {
 
 function saveWishes(wishes) {
     try {
-        localStorage.setItem('prem_birthday_wishes', JSON.stringify(wishes));
+        localStorage.setItem(WISHES_STORAGE_KEY, JSON.stringify(wishes));
     } catch (e) {
         console.warn("Could not save to localStorage", e);
     }
